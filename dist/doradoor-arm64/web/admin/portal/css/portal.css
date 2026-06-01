@@ -1,0 +1,342 @@
+/* ============================================
+   Portal 用户自助服务 - 补充样式
+   复用 admin 的 style.css 基础样式
+   ============================================ */
+
+/* 登录按钮 (补充 style.css 中缺失的样式) */
+.btn-login {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-blue);
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-login:hover {
+    background: #3ab0e2;
+}
+
+/* 退出登录按钮 (补充 style.css 中缺失的样式) */
+.btn-logout {
+    width: 100%;
+    padding: 8px;
+    background: transparent;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    border-color: var(--accent-red);
+    color: var(--accent-red);
+}
+
+/* 侧边栏副标题 */
+.sidebar-header .subtitle {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* 用户角色 */
+.user-role {
+    font-size: 11px;
+    color: var(--text-muted);
+}
+
+/* 导航项 <a> 标签重置 */
+.sidebar-nav a.nav-item {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* ============================================
+   页面头部增强
+   ============================================ */
+/* page-header 中的描述文字 */
+.page-header p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* page-header 左侧标题区 */
+.page-header-left {
+    flex: 1;
+}
+
+.page-header-left h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.page-header-left p {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+/* ============================================
+   统计卡片增强 (复用 admin 的 stat-card)
+   ============================================ */
+.stat-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.stat-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+.stat-icon.blue { background: rgba(79, 195, 247, 0.15); }
+.stat-icon.green { background: rgba(83, 215, 105, 0.15); }
+.stat-icon.red { background: rgba(233, 69, 96, 0.15); }
+.stat-icon.yellow { background: rgba(255, 213, 79, 0.15); }
+.stat-icon.purple { background: rgba(187, 134, 252, 0.15); }
+
+.stat-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 6px;
+}
+
+/* ============================================
+   图表卡片 (复用 admin 的 card 结构)
+   ============================================ */
+.chart-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+}
+
+.chart-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-secondary);
+}
+
+/* ============================================
+   Key 卡片
+   ============================================ */
+.key-card {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    margin-bottom: 12px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition);
+}
+
+.key-card:hover {
+    border-color: rgba(79, 195, 247, 0.3);
+}
+
+.key-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.key-card-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.key-card-prefix {
+    font-family: 'Consolas', 'Monaco', monospace;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: var(--accent-blue);
+    font-size: 13px;
+    display: inline-block;
+    margin-bottom: 12px;
+}
+
+.key-card-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.key-card-info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.key-card-info-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.key-card-info-value {
+    font-size: 13px;
+    color: var(--text-primary);
+}
+
+.key-card-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ============================================
+   新 Key 显示
+   ============================================ */
+.new-key-display {
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--accent-green);
+    border-radius: 6px;
+    padding: 16px;
+    margin: 16px 0;
+}
+
+.new-key-value {
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 13px;
+    word-break: break-all;
+    color: var(--accent-green);
+    background: rgba(83, 215, 105, 0.1);
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 8px;
+}
+
+.key-created-success {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.key-created-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.key-created-warning {
+    background: rgba(255, 152, 0, 0.1);
+    border: 1px solid var(--accent-orange);
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 16px;
+    color: var(--accent-orange);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* ============================================
+   周期选择器
+   ============================================ */
+.period-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.period-btn {
+    padding: 7px 18px;
+    border-radius: 6px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: var(--transition);
+    font-size: 13px;
+}
+
+.period-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+}
+
+.period-btn.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: #fff;
+}
+
+/* ============================================
+   空状态
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 50px 20px;
+    color: var(--text-muted);
+}
+
+.empty-state .empty-icon {
+    font-size: 36px;
+    margin-bottom: 12px;
+}
+
+.empty-state .empty-text {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+/* ============================================
+   设置页面
+   ============================================ */
+.settings-section {
+    background: var(--bg-card);
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    margin-bottom: 24px;
+}
+
+.settings-section-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.settings-section-header h3 {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.settings-section-body {
+    padding: 20px;
+}
+
+/* ============================================
+   响应式调整
+   ============================================ */
+@media (max-width: 768px) {
+    .key-card-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .key-card-actions {
+        flex-wrap: wrap;
+    }
+}

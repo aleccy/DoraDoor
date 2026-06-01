@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="api-base" content="">
+    <title>DoraDoor - 管理后台</title>
+    <link rel="stylesheet" href="/admin/css/style.css?v=20260521y">
+    <script src="/admin/vendor/chart.min.js?v=20250517"></script>
+    <!-- marked.js + highlight.js 本地文件（避免国内CDN不可用） -->
+    <script src="/admin/vendor/marked.min.js?v=20250517"></script>
+    <link rel="stylesheet" href="/admin/vendor/github-light.min.css?v=20260518">
+    <script src="/admin/vendor/hljs-bundle.min.js?v=20250517"></script>
+</head>
+<body>
+    <!-- 登录页面 -->
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <div class="login-logo">
+                <div class="logo-icon">🚀</div>
+                <h1>DoraDoor</h1>
+                <p>DoraDoor 管理后台</p>
+            </div>
+            <div id="loginError" class="login-error"></div>
+            <form id="loginForm" class="login-form" onsubmit="return App.login(event)">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" id="loginUsername" placeholder="请输入用户名" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" id="loginPassword" placeholder="请输入密码" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-login">登 录</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 主应用 -->
+    <div id="appLayout" class="app-layout hidden">
+        <!-- 移动端菜单按钮 -->
+        <button class="menu-toggle" onclick="App.toggleSidebar()">☰</button>
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="App.toggleSidebar()"></div>
+
+        <!-- 侧边栏 -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>🚀 DoraDoor</h2>
+                <div class="subtitle">管理后台</div>
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-page="dashboard" onclick="App.navigate('dashboard')">
+                    <span class="nav-icon">📊</span><span class="nav-text">仪表盘</span>
+                </div>
+                <div class="nav-item" data-page="providers" onclick="App.navigate('providers')">
+                    <span class="nav-icon">🔧</span><span class="nav-text">服务商管理</span>
+                </div>
+                <div class="nav-item" data-page="apikeys" onclick="App.navigate('apikeys')">
+                    <span class="nav-icon">🔑</span><span class="nav-text">API Key 管理</span>
+                </div>
+                <div class="nav-item" data-page="mappings" onclick="App.navigate('mappings')">
+                    <span class="nav-icon">🔄</span><span class="nav-text">模型映射</span>
+                </div>
+                <div class="nav-item" data-page="pricing" onclick="App.navigate('pricing')">
+                    <span class="nav-icon">💰</span><span class="nav-text">价格管理</span>
+                </div>
+                <div class="nav-item" data-page="logs" onclick="App.navigate('logs')">
+                    <span class="nav-icon">📋</span><span class="nav-text">请求日志</span>
+                </div>
+                <div class="nav-item" data-page="users" onclick="App.navigate('users')">
+                    <span class="nav-icon">👥</span><span class="nav-text">用户管理</span>
+                </div>
+                <div class="nav-item" data-page="portalusers" onclick="App.navigate('portalusers')">
+                    <span class="nav-icon">👤</span><span class="nav-text">门户用户</span>
+                </div>
+                <div class="nav-item" data-page="system" onclick="App.navigate('system')">
+                    <span class="nav-icon">⚙️</span><span class="nav-text">系统状态</span>
+                </div>
+                <div class="nav-item" data-page="apitest" onclick="App.navigate('apitest')">
+                    <span class="nav-icon">🧪</span><span class="nav-text">API 测试</span>
+                </div>
+                <div class="nav-item" data-page="accesslogs" onclick="App.navigate('accesslogs')">
+                    <span class="nav-icon">📝</span><span class="nav-text">访问日志</span>
+                </div>
+                <div class="nav-item" data-page="invites" onclick="App.navigate('invites')">
+                    <span class="nav-icon">🎫</span><span class="nav-text">邀请码</span>
+                </div>
+                <div class="nav-item" data-page="usage" onclick="App.navigate('usage')">
+                    <span class="nav-icon">📊</span><span class="nav-text">用量分析</span>
+                </div>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                    <div>
+                        <div class="user-name" id="userName">admin</div>
+                        <div class="user-role" id="userRole">管理员</div>
+                    </div>
+                </div>
+                <button class="btn-logout" onclick="App.logout()">退出登录</button>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content" id="mainContent">
+            <!-- 由JS动态渲染 -->
+        </main>
+    </div>
+
+    <!-- 弹窗 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContainer">
+            <div class="modal-header">
+                <h3 id="modalTitle">标题</h3>
+                <button class="modal-close" onclick="App.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter"></div>
+        </div>
+    </div>
+
+    <!-- 提示消息容器 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/admin/js/charts.js?v=20260521y"></script>
+    <script src="/admin/js/app.js?v=20260521y"></script>
+</body>
+</html>

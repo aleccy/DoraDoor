@@ -1,0 +1,20 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local config (may contain secrets)
+config.local.yaml
+.env
+!.env.example
+
+# Logs
+*.log
+logs/

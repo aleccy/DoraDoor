@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="api-base" content="">
+    <title>DoraDoor - 用户自助服务</title>
+    <link rel="stylesheet" href="/admin/css/style.css?v=20260521y">
+    <link rel="stylesheet" href="/portal/css/portal.css?v=20260521y">
+</head>
+<body>
+    <!-- 登录页面 -->
+    <div id="loginPage" class="login-page">
+        <div class="login-container">
+            <div class="login-logo">
+                <div class="logo-icon">🚀</div>
+                <h1>DoraDoor</h1>
+                <p>用户自助服务平台</p>
+            </div>
+            <div id="loginError" class="login-error"></div>
+            <form id="loginForm" class="login-form" onsubmit="return Portal.login(event)">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="text" id="loginUsername" placeholder="请输入用户名" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" id="loginPassword" placeholder="请输入密码" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn-login">登 录</button>
+            </form>
+            <div style="text-align:center;margin-top:16px">
+                <a href="#" onclick="Portal.showInviteRegister();return false" style="color:var(--accent-blue);font-size:14px;text-decoration:none">🎫 使用邀请码注册</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主应用布局 -->
+    <div id="appLayout" class="app-container hidden">
+        <button class="menu-toggle" onclick="Portal.toggleSidebar()">☰</button>
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="Portal.toggleSidebar()"></div>
+
+        <!-- 侧边栏 -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2>🚀 DoraDoor</h2>
+                <div class="subtitle">用户自助服务</div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard" onclick="Portal.navigate('dashboard');return false">
+                    <span class="nav-icon">📊</span><span class="nav-text">概览</span>
+                </a>
+                <a href="#" class="nav-item" data-page="apikeys" onclick="Portal.navigate('apikeys');return false">
+                    <span class="nav-icon">🔑</span><span class="nav-text">我的 Key</span>
+                </a>
+                <a href="#" class="nav-item" data-page="stats" onclick="Portal.navigate('stats');return false">
+                    <span class="nav-icon">📈</span><span class="nav-text">用量统计</span>
+                </a>
+                <a href="#" class="nav-item" data-page="logs" onclick="Portal.navigate('logs');return false">
+                    <span class="nav-icon">📋</span><span class="nav-text">请求日志</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings" onclick="Portal.navigate('settings');return false">
+                    <span class="nav-icon">⚙️</span><span class="nav-text">个人设置</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">U</div>
+                    <div>
+                        <div class="user-name" id="sidebarUserName">-</div>
+                        <div class="user-role">门户用户</div>
+                    </div>
+                </div>
+                <button class="btn-logout" onclick="Portal.logout()">退出登录</button>
+            </div>
+        </aside>
+
+        <!-- 主内容区 -->
+        <main class="main-content" id="mainContent"></main>
+    </div>
+
+    <!-- 弹窗 -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modalContainer">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="modal-close" onclick="Portal.closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer" id="modalFooter"></div>
+        </div>
+    </div>
+
+    <!-- Toast提示 -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="/admin/vendor/chart.min.js?v=20260521y"></script>
+    <script src="/portal/js/app.js?v=20260521y"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+server:
+  port: 3001
+  read_buffer_size: 4096
+  write_buffer_size: 4096
+  max_request_size: 10485760
+  keep_alive: true
+  keep_alive_timeout: 30s
+  concurrency: 10000
+  cors_origin: ""  # CORS允许的源，留空表示同源策略，生产环境建议设置具体域名
+
+# 管理员配置
+admin:
+  username: "admin"
+  password: "${ADMIN_PASSWORD}"  # 建议通过环境变量设置，默认admin123
+  secret: "${JWT_SECRET}"  # 必须通过环境变量设置，否则使用默认值（不安全）
+  jwt_expiry: 24h  # JWT token有效期
+
+# 安全配置
+security:
+  encryption_key: "${ENCRYPTION_KEY}"  # API Key加密密钥（AES-256，32字节），留空则不加密
+
+# 流式响应配置
+stream:
+  read_timeout: 180s           # 流式读取超时（两次数据之间），支持AI深度思考
+  response_timeout: 120s       # 等待首个响应超时
+  enable_client_timeout: false  # 流式请求是否使用客户端总超时，false=不限制总时长
+
+connection_pool:
+  max_idle_conns: 10000
+  max_idle_per_host: 100
+  idle_timeout: 90s
+  keep_alive: 30s
+  tls_handshake_timeout: 5s
+  response_header_timeout: 120s
+  force_http2: true
+
+auth:
+  bloom_filter_capacity: 1000000
+  bloom_filter_error_rate: 0.001
+  redis_cache_ttl: 5m
+
+rate_limit:
+  enabled: true
+  window_size: 60s
+  max_requests_per_window: 60
+
+batch_write:
+  size: 1000
+  interval: 1s
+
+cache:
+  enabled: true
+  max_cost: 104857600
+  ttl: 5m
+
+database:
+  host: "postgres"     # Docker Compose 服务名；二进制部署改为 localhost
+  port: 5432
+  user: "postgres"
+  password: "${POSTGRES_PASSWORD}"
+  dbname: "ai_gateway"
+  sslmode: "disable"
+  max_open_conns: 50
+  max_idle_conns: 25
+  conn_max_lifetime: 5m
+
+redis:
+  addr: "redis:6379"  # Docker Compose 服务名；二进制部署改为 localhost:6379
+  password: ""
+  db: 0
+  pool_size: 100
+
+metrics:
+  enabled: true
+  path: "/metrics"
+
+logging:
+  level: "info"
+  format: "json"
